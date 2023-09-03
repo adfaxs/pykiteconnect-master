@@ -6,6 +6,7 @@ from kiteconnect import KiteTicker
 import undetected_chromedriver as uc
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.common.by import By
+import Cred
 import time
 import pyotp
 import threading
@@ -25,13 +26,7 @@ except ValueError:
 options = Options()
 from os import system
 options.add_argument('--headless') #optional.
-Cred ={
-    "api_key": "f9rhxy460o4aiysb",
-    "api_secret": "ro6oj88z6uox0pfo6b5y1eobszes0ixp",
-    "user_id": "KZZ053",
-    "user_pwd": "arush123",
-    "totp_key": "3DXBBJBG53RHWCPT3YEVKZZFMQQ5MHSM"
-}
+
 
 
 def login_in_zerodha(Cred):
@@ -87,4 +82,4 @@ def login_in_zerodha(Cred):
     print("Access Token Saved!")
 
 
-login_in_zerodha(Cred)
+login_in_zerodha(Cred.Crosshair)
