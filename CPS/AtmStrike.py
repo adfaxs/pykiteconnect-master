@@ -53,3 +53,33 @@ def getAtmStrike (ltp , index):
          os.system('clear')  
          print(e)
          time.sleep(10000)
+         
+def getLTP(api , index):
+      print("Inside")
+      try:
+            if(index =="BANKNIFTY"):
+                  ltp = (api.ltp('NSE:NIFTY BANK')).get('NSE:NIFTY BANK')
+                
+
+            elif(index =="NIFTY"):   
+                  ltp = ltp = (api.ltp('NSE:NIFTY 50')).get('NSE:NIFTY 50')
+
+            elif(index =="FINNIFTY"):   
+                  ltp = (api.ltp('NSE:NIFTY FIN SERVICE')).get('NSE:NIFTY FIN SERVICE')
+
+            elif(index =="SENSEX"):   
+                  ltp = (api.ltp('BSE:SENSEX')).get('BSE:SENSEX')
+
+            
+            elif(index =="MIDCPNIFTY"):   
+                  ltp = (api.ltp('NSE:NIFTY MID SELECT')).get('NSE:NIFTY MID SELECT')
+
+            print(ltp)
+
+            return ltp['last_price'] , ltp['instrument_token']
+      except Exception as e :
+        while True:
+         os.system('clear')  
+         print(e)
+         time.sleep(10000)
+      

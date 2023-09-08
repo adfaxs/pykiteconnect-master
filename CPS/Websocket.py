@@ -1,13 +1,13 @@
 
+import time
+import logging
+from kiteconnect import KiteTicker
 
 
-
-def UpdateLtpData(kws , last_prices , Tokens):
+def UpdateLtpData(kws , last_prices , Tokens , WebsocketIsRunning , WebsocketIsNotInitialized):
     # Tokens = [65260551]
 
-    import time
-    import logging
-    from kiteconnect import KiteTicker
+ 
     oldTokens = []
 
     logging.basicConfig(level=logging.DEBUG)
@@ -16,7 +16,6 @@ def UpdateLtpData(kws , last_prices , Tokens):
 
     # RELIANCE BSE
 
-
     # Callback for tick reception.
     def on_ticks(ws, ticks):
         # if len(ticks) > 0:
@@ -24,6 +23,7 @@ def UpdateLtpData(kws , last_prices , Tokens):
         # print(ticks)
         for tick in ticks :
          last_prices[tick['instrument_token']] = tick['last_price']
+
     
 
 
@@ -72,7 +72,7 @@ def UpdateLtpData(kws , last_prices , Tokens):
 
     count = 0
     time.sleep(2)
-    while True:
+    while WebsocketIsRunning:
         # count += 1
         # if count % 2 == 0:
         #     if kws.is_connected():
@@ -86,11 +86,10 @@ def UpdateLtpData(kws , last_prices , Tokens):
         # print(count)
         # if Tokens 
         if str(Tokens) != str(oldTokens):
-            print("hogaya update")
             # kws.unsubscribe(oldTokens)
             oldTokens = list(Tokens)
             kws.subscribe(Tokens)
-            
+        
         
         # print(kws.subscribed_tokens)
                 

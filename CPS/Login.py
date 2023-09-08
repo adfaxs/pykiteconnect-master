@@ -1,7 +1,7 @@
 
 import time 
-import os 
-from kiteconnect import KiteConnect
+import os  
+from kiteconnect import KiteConnect  , KiteTicker
 
 
 def loginZerodha(Credentials):
@@ -13,13 +13,7 @@ def loginZerodha(Credentials):
         access_token  = open(r"/Users/crosshair/Downloads/pykiteconnect-master/Login/" + name,'r')
         access_token = access_token.read()
 
-    
+        kws = KiteTicker(Credentials['api_key'], access_token)
         api.set_access_token(access_token)
-        return api 
-    # except Exception as e :
-    #     while True:
-    #      os.system('clear')  
-    #      print(e)
-    #      time.sleep(10000)
-         
-    
+        return api , kws
+   

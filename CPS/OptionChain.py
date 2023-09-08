@@ -2,25 +2,28 @@
 from AtmStrike import getAtmStrike
 import time 
 def setOptionChain (OptionChain , Variables , last_prices  , Tokens):
-    
-    LTP = last_prices[Variables['IndexToken']]
-    AtmStrike = getAtmStrike(LTP , Variables['Index'])
-    if OptionChain  == [] or str(AtmStrike) != (Variables['AtmStrike']):
-     Tokens = UpdateTokens(Variables , LTP , Tokens  , OptionChain)
-     for Option in  OptionChain: 
-            Option['ltp']=last_prices[int(Option['token'])]
+    try:
+        LTP = last_prices[Variables['IndexToken']]
+        AtmStrike = getAtmStrike(LTP , Variables['Index'])
+        print(OptionChain)
+        if OptionChain  == [] or str(AtmStrike) != (Variables['AtmStrike']):
+            Tokens = UpdateTokens(Variables , LTP , Tokens  , OptionChain)
+            for Option in  OptionChain: 
+                Option['ltp']=last_prices[int(Option['token'])]
 
-     Variables['AtmStrike'] = str(AtmStrike)
-    else:
+            Variables['AtmStrike'] = str(AtmStrike)
+        else:
 
-        for Option in  OptionChain: 
-            Option['ltp']=last_prices[int(Option['token'])]
+            for Option in  OptionChain: 
+                Option['ltp']=last_prices[int(Option['token'])]
+                
+            Variables['AtmStrike'] = str(AtmStrike)
             
-        Variables['AtmStrike'] = str(AtmStrike)
-        
- 
-    # return OptionChain
-    return OptionChain 
+    
+        # return OptionChain
+        return OptionChain 
+    except Exception as e :
+        print(e)
 
 def UpdateTokens(Variables , LTP  , Tokens  , OptionChain  ):
     # global Tokens

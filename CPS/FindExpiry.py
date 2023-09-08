@@ -58,6 +58,6 @@ def findExpiry(index , ATMStrike):
     index = index
     strike = ATMStrike
     code = closest_symbol
-    print(code)
+    # print(code)
     expiry = extract_expiry_from_code(index, strike, code)
     return expiry

@@ -1,0 +1,11 @@
+{"Variables" : {
+    "Index" :"FINNIFTY",
+    "IndexToken":257801,
+    "strikeDifference":50,
+    "Expiry":"",
+    "AtmStrike":"",
+    "Quantity":"150",            
+    "HedgeQuantity":"200",   
+    "MaxQty":"1800",   
+    "ProductType":"NRML"   
+} }   
